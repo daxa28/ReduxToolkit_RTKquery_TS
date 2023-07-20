@@ -1,0 +1,33 @@
+{
+  "posts": [
+    {
+      "title": "From California to the New York Island, this land was made for you and me.",
+      "author": "Woody Guthrie",
+      "id": 1
+    },
+    {
+      "title": "If the sight of the blue skies fills you with joy, rejoice, for your soul is alive.",
+      "author": "Eleanora Duse",
+      "id": 2
+    },
+    {
+      "title": "Spring is nature's way of saying 'let's party!",
+      "author": "Robin Williams",
+      "id": 3
+    },
+    {
+      "title": "Live in the sunshine, swim the sea, drink the wild air.",
+      "author": "Ralph Waldo Emerson",
+      "id": 4
+    },
+    {
+      "title": "The Sea, once it casts its spell, holds one in its net of wonder forever.",
+      "author": "Jacques-Yves Cousteau",
+      "id": 5
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}

@@ -92,6 +92,12 @@ useUpdatePostMutation – для получения функции измене�
 
 <img src="./photo_for_readme/2.png" width="700">
 
+
+
+### `npm install`
+
+### `npx json-server --watch db.json --port 5000`
+
 ### `npm start`
 
 Runs the app in the development mode.

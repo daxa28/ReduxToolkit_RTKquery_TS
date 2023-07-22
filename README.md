@@ -1,46 +1,98 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# React, Redux, Redux Toolkit и RTK Query
 
-In the project directory, you can run:
+#### Данное приложение реализовано на языке Type Script с помощью JavaScript-библиотеки – React, с использованием стейт менеджера Redux, Redux Toolkit и RTK Query.
+
+<p>
+          
+<b>#</b> В ходе работы создан стор&#40;<b>store</b>&#41; с помощью
+импортированной функции <b>configureStore</b> из <b>ReduxToolkit</b>.
+Создан корневой редьюсер&#40;rootReducer&#41;, а также типы для
+взаимодействия с хранилищем: тип состояния&#40;RootState&#41;, тип
+стора&#40;AppStore&#41; и тип диспатча&#40;AppDispatch&#41;. Для
+работы с <b>Redux</b> создано два кастомных хука: useAppDispatch и
+useAppSelector. Для создания редьюсера типизировали состояние
+UserState, определили какие поля и какого типа будут храниться в
+состоянии. Создали слайс userSlice с помощью функции
+<b>createSlice</b> с опциями. В опции <b>reducers</b> создали две
+функции для изменения состояния счетчика.
+<br />
+<br />
+<b>#</b> Получения списка пользователей с сервера является асинхронным
+процессом. <b>ReduxToolkit</b> включает в себя работу с
+<b>middleware</b> библиотекой <b>ReduxThunk</b>. Данные получаем от
+сервиса <b>JsonPlaceholder</b>. Импортировали функцию
+<b>createAsyncThunk</b> для создания асинхронного экшен
+генератора&#40;<b>action creator</b>&#41;, в котором с помощью
+библиотеки <b>axios</b> отправляем запрос по определенному <b>url</b>,
+в случае успешной загрузки возвращаем данные о пользователях в формате
+<b>json</b>, в случае ошибки возвращаем ошибку. В опции
+<b>extraReducers</b> функции <b>createSlice</b> описаны три сценария
+для изменения данных: <b>fulfilled</b> – успешная загрузка,
+<b>pending</b> – ожидание, <b>rejected</b> – ошибка. Список пользователей 
+отрисовывается в зависимости от значения
+полей&#40;isLoading, error&#41; в состоянии UserState.
+<br />
+<br />
+<b>#</b> Для работы с <b>RTK Query</b> реализуем функционал для
+получения и изменения данных о постах с сервера. Для начала установили
+<b>json-server</b>, с помощью которого получаем <b>REST API</b> без
+предварительной настройки. Данные будут храниться в файле в формате
+<b>json</b>. Для описания сервиса, который отвечает за изменение и
+получения данных о постах создаем postAPI с помощью функции
+<b>createApi</b>. При вызове функции передали ряд опций: уникальный
+ключ, который будет определять текущий сервис&#40;<b>reducerPath</b>
+&#41;; опцию <b>baseQuery</b>, в которую передали функцию
+<b>fetchBaseQuery</b> с опцией базового <b>url</b>, на который этот
+сервис будет отправлять запросы; опцию <b>endpoints</b>, в которой
+создали стрелочную функцию, которая возвращает объект со всеми
+описанными эндпоинтами, на которые отправляются запросы. В
+объекте, как ключ указали название метода, а в значение передаем
+результат вывода <b>query</b> или <b>mutation</b>. В объекте описано
+четыре метода: получение всех постов&#40;fetchAllPosts&#41;,
+добавление поста&#40;createPost&#41;, изменение
+поста&#40;updatePost&#41; и удаление поста&#40;deletePost&#41;. В
+корневой редьюсер добавляем postAPI редьюсер, с помощью уникального
+ключа <b>reducerPath</b>. В конфигурацию стора в поле
+<b>middleware</b> добавляем middleware postAPI, с помощью стрелочной
+функции, которая принимает функцию <b>getDefaultMiddleware</b>.
+Благодаря функции <b>getDefaultMiddleware</b> получаем дефолтный
+middleware, который уже подключён к ReduxTollkit и с помощью функции
+concat добавляем middleware, который получаем из postAPI. При
+отрисовке постов и функционала для них в компоненте пользуемся авто
+сгенерированными хуками из postAPI&#40;useFetchAllPostsQuery – для
+получения данных о постах, индикатора загрузки, индикатора ошибки и
+функции <b>refetch</b>, для обновления всех постов,
+useCreatePostMutation – для получения функции создания постов,
+useDeletePostMutation – для получения функции удаления постов,
+useUpdatePostMutation – для получения функции изменения поста&#41;.
+<br />
+<br />
+<b>Вывод</b>: Использование библиотеки <b>Redux Toolkit</b> помогает
+быстро начать использовать <b>Redux</b>, упрощает работу с типичными
+задачами и кодом <b>Redux</b>. Данные средства позволяют не только
+сделать процесс разработки более удобным, понятным и быстрым, но и
+более эффективным, за счет наличия в библиотеке ряда хорошо
+зарекомендовавших себя ранее инструментов. Использование
+<b>RTK Query</b> упрощает распространенные случаи загрузки данных в
+веб-приложении, избавляя от необходимости вручную писать логику
+загрузки и кэширования данных. Позволяет решить проблему дедубликации
+запросов, поддерживает кэширование при установке с настройками по
+умолчанию, автоматически создает хуки, исходя из заданных эндпоинтов –
+содержит полезные утилиты, позволяющие упростить написание кода.
+</p>
+
+#### _screenshot(1)_
+
+<img src="./photo_for_readme/1.png" width="700">
+
+
+#### _screenshot(2)_
+
+<img src="./photo_for_readme/2.png" width="700">
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Runs the app in the development mode.
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
